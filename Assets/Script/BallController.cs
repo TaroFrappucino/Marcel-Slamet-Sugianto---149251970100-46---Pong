@@ -7,6 +7,9 @@ public class BallController : MonoBehaviour
     public Vector2 speed;
     private Rigidbody2D rig;
 
+    public Vector2 resetPosition;
+    private int direction = 0;
+
     // Start is called before the first frame update
     // Fungsi yang otomatis dijalankan pada saat Game Object diaktifkan pertama kali, baik langsung saat game dijalankan, saat scene diload, atau diaktifkan manual dengan menggunakan script 
     void Start()
@@ -28,4 +31,18 @@ public class BallController : MonoBehaviour
         // transform.Translate(speed * Time.deltaTime);
     }
    
+    public void ResetBall() 
+    {
+        transform.position = new Vector3(resetPosition.x, resetPosition.y, 2);
+        
+        if (direction == 0)
+        {
+            speed = new Vector2(speed.x + 1, speed.y + 1);
+            // rig.velocity = new Vector2(speed.x + 1, speed.y + 1);
+            direction = 1;
+        } else {
+            rig.velocity = new Vector2((speed.x + 1) * -1, (speed.y + 1) * -1);
+            direction = 0;
+        }
+    }
 }

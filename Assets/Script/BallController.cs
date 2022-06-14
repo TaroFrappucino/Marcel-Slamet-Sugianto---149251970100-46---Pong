@@ -5,10 +5,11 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public Vector2 speed;
+    private Vector2 defaultSpeed = new Vector2(5, 2);
     private Rigidbody2D rig;
 
     public Vector2 resetPosition;
-    private int direction = 0;
+    public int direction = 0;
 
     // Start is called before the first frame update
     // Fungsi yang otomatis dijalankan pada saat Game Object diaktifkan pertama kali, baik langsung saat game dijalankan, saat scene diload, atau diaktifkan manual dengan menggunakan script 
@@ -37,12 +38,17 @@ public class BallController : MonoBehaviour
         
         if (direction == 0)
         {
-            speed = new Vector2(speed.x + 1, speed.y + 1);
-            // rig.velocity = new Vector2(speed.x + 1, speed.y + 1);
+            rig.velocity = new Vector2(speed.x, speed.y);
             direction = 1;
         } else {
-            rig.velocity = new Vector2((speed.x + 1) * -1, (speed.y + 1) * -1);
+            rig.velocity = new Vector2(speed.x * -1, speed.y * -1);
             direction = 0;
         }
+        rig.velocity = defaultSpeed;
+    }
+
+    public void ActivatePUSpeedUp(float magnitude) 
+    {
+        rig.velocity *= magnitude;
     }
 }

@@ -9,6 +9,7 @@ public class PaddleController : MonoBehaviour
 
     private Rigidbody2D rig;
     public int speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,8 @@ public class PaddleController : MonoBehaviour
     }
 
     // Terima input
-    private Vector2 getInput() {
+    private Vector2 getInput() 
+    {
         if (Input.GetKey(upKey)) {
             return Vector2.up * speed;
         }
@@ -33,9 +35,9 @@ public class PaddleController : MonoBehaviour
         return Vector2.zero;
     }
 
-    private void moveObject(Vector2 movement) {
-        Debug.Log("Speed paddle: " + movement);
+    private void moveObject(Vector2 movement) 
+    {
+        // Debug.Log("Speed paddle: " + movement);
         rig.velocity = movement;
-        // transform.Translate(movement * Time.deltaTime);
     }
 }
